@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unclick+</title>
+
+  <style>
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #0049F7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Tahoma", sans-serif;
+      color: #FFA6E7;
+      cursor: pointer;
+      padding: 20px;
+      user-select: none;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1); /* Un toque de transparencia */
+      padding: 30px;
+      border-radius: 30px;
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 166, 231, 0.3);
+      width: 100%;
+      max-width: 900px; /* Más ancho para que quepan ambos */
+      
+      /* FLEXBOX MÁGICO */
+      display: flex;
+      flex-direction: row; /* Lado a lado */
+      align-items: center;
+      justify-content: center;
+      gap: 30px; /* Espacio entre texto e imagen */
+    }
+
+    /* CONTENEDOR DEL TEXTO */
+    .text-content {
+      flex: 1; /* Toma la mitad del espacio */
+      text-align: left;
+    }
+
+    h1 { 
+      font-size: 1.4rem; 
+      line-height: 1.5; 
+      margin: 0; 
+      font-weight: normal; 
+    }
+
+    /* CONTENEDOR DE LA IMAGEN */
+    .image-content {
+      flex: 1; /* Toma la otra mitad */
+      display: flex;
+      justify-content: center;
+    }
+
+    img {
+      width: 100%; 
+      max-height: 500px; 
+      object-fit: cover; 
+      border-radius: 20px;
+      border: 3px solid #FFA6E7;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .instruction { 
+      margin-top: 20px; 
+      opacity: 0.5; 
+      font-size: 0.7rem; 
+      text-transform: uppercase;
+      display: block;
+    }
+
+    /* --- RESPONSIVE: Si la pantalla es angosta (Celular) --- */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column; /* Se ponen uno arriba del otro */
+        text-align: center;
+        max-width: 450px;
+      }
+      .text-content {
+        text-align: center;
+        order: 1; /* Texto arriba */
+      }
+      .image-content {
+        order: 2; /* Imagen abajo */
+      }
+      h1 { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+
+<body onclick="changeVibe()">
+
+  <div class="container">
+    
+    <div class="text-content">
+      <h1 id="phrase">FELIZ CUMPLE AMORA <3</h1>
+      <span class="instruction">Toca para continuar...</span>
+    </div>
+
+    <div class="image-content">
+      <img id="vibeImage" src="img/1.JPG" alt="vibe image" />
+    </div>
+
+  </div>
+
+  <script>
+    const phrases = [
+     "🧸💖FELIZ CUMPLE AMORA <3 🧸💖",
+      "El año pasado no llegué a sacar mi lado trolo, este año toca mimarte a full (con bajo presupuesto, pero dejando la salud mental en programar de nuevo). 🐻✨",
+      "Por cierto, haciendo esto descubrí que tenemos más fotos tomando Red Bull que fotos juntas y normales. 👩🏻‍❤️‍💋‍👩🏽🥤",
+      "Pero definitivamente no hay mejor compañía de cafeína que vos; real, desde que no pasamos todas las mañanas juntas ni tomo :( así de fiel. ☕️💓",
+      "Te adoro tanto pequeña, mi mejor 'ship' en personajes animados y ropita, mi real y mi segunda en todo. 🎀🧸",
+      "Suelo ser súper rara y cambiante, pero ojalá sepas lo mucho que te aprecio y amo tu compañía; cada salida a comer, al cine, a tomar, las ferias... sos mi cita favorita. Amo cada cosa solo por tu presencia. 🌹💘",
+      "Encontrar, conservar y apreciar a aquellas personas a las que valoramos, no por lo que pueden darnos, sino porque en ellas encontramos a un alma gemela.🎀💓",
+      "Pov: el plan es con tu compa de informatica",
+      "🎀💓Espero que pases un día maravilloso, amor mío. 🎂💗✨"
+    ];
+
+    const images = [
+      "img/1.jpg", "img/22.png", "img/4.png", "img/love.jpg", 
+      "img/2.png", "img/7.png", "img/a.png", "img/captura.PNG", "img/jeje.jpg"
+    ];
+
+    const phraseEl = document.getElementById("phrase");
+    const imageEl = document.getElementById("vibeImage");
+
+    let currentIndex = 0;
+
+    function changeVibe() {
+      currentIndex++;
+      if (currentIndex >= phrases.length) {
+        currentIndex = 0;
+      }
+      phraseEl.textContent = phrases[currentIndex];
+      imageEl.src = images[currentIndex % images.length];
+    }
+
+
+  </script>
+
+</body>
+</html>
